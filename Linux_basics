@@ -1,0 +1,149 @@
+1. Creating and Renaming Files/Directories
+root@ip-172-31-3-29:~# mkdir test_dir
+root@ip-172-31-3-29:~# ls
+diskfree.txt  first_shellscript.sh  index.html  snap  sudoers  test_dir
+root@ip-172-31-3-29:~# touch test_dir/example.txt
+root@ip-172-31-3-29:~# ls -l test_dir/
+total 0
+-rw-r--r-- 1 root root 0 Sep 29 11:52 example.txt
+root@ip-172-31-3-29:~# mv test_dir/example.txt renamed_example.txt
+root@ip-172-31-3-29:~# ls
+diskfree.txt  first_shellscript.sh  index.html  renamed_example.txt  snap  sudoers  test_dir
+root@ip-172-31-3-29:~# ls -ltr test_dir/
+total 0
+root@ip-172-31-3-29:~# cd test_dir/
+root@ip-172-31-3-29:~/test_dir# ls
+root@ip-172-31-3-29:~/test_dir# cd ..
+root@ip-172-31-3-29:~# ls
+diskfree.txt  first_shellscript.sh  index.html  renamed_example.txt  snap  sudoers  test_dir
+root@ip-172-31-3-29:~# mv renamed_example.txt test_dir/
+root@ip-172-31-3-29:~# ls
+diskfree.txt  first_shellscript.sh  index.html  snap  sudoers  test_dir
+root@ip-172-31-3-29:~# ls -l test_dir/
+total 0
+-rw-r--r-- 1 root root 0 Sep 29 11:52 renamed_example.txt
+
+
+
+2. Viewing File Contents
+root@ip-172-31-3-29:~# cat /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin
+_apt:x:42:65534::/nonexistent:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:998:998:systemd Network Management:/:/usr/sbin/nologin
+dhcpcd:x:996:996:DHCP Client Daemon:/usr/lib/dhcpcd:/bin/false
+messagebus:x:995:995:System Message Bus:/nonexistent:/usr/sbin/nologin
+syslog:x:100:101::/nonexistent:/usr/sbin/nologin
+systemd-resolve:x:989:989:systemd Resolver:/:/usr/sbin/nologin
+_chrony:x:988:988:Chrony Daemon:/var/lib/chrony:/usr/sbin/nologin
+tss:x:987:987:tss user for tpm2:/:/usr/sbin/nologin
+uuidd:x:101:103::/run/uuidd:/usr/sbin/nologin
+sshd:x:986:65534:sshd user:/run/sshd:/usr/sbin/nologin
+pollinate:x:102:1::/var/cache/pollinate:/bin/false
+tcpdump:x:985:985:tcpdump:/nonexistent:/usr/sbin/nologin
+landscape:x:103:106::/var/lib/landscape:/usr/sbin/nologin
+fwupd-refresh:x:984:984:Firmware update daemon:/var/lib/fwupd:/usr/sbin/nologin
+polkitd:x:983:983:User for polkitd:/:/usr/sbin/nologin
+ec2-instance-connect:x:104:65534::/nonexistent:/usr/sbin/nologin
+ubuntu:x:1000:1000:Ubuntu:/home/ubuntu:/bin/bash
+nagesh:x:1001:1001::/home/nagesh:/bin/sh
+root@ip-172-31-3-29:~# head -n 5 /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+root@ip-172-31-3-29:~# tail -n 5 /etc/passwd
+fwupd-refresh:x:984:984:Firmware update daemon:/var/lib/fwupd:/usr/sbin/nologin
+polkitd:x:983:983:User for polkitd:/:/usr/sbin/nologin
+ec2-instance-connect:x:104:65534::/nonexistent:/usr/sbin/nologin
+ubuntu:x:1000:1000:Ubuntu:/home/ubuntu:/bin/bash
+nagesh:x:1001:1001::/home/nagesh:/bin/sh
+
+
+3. Searching for Patterns
+root@ip-172-31-3-29:~# grep root /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+root@ip-172-31-3-29:~#
+
+4. Zipping and Unzipping
+root@ip-172-31-3-29:~# tar -cf test_dir.zip test_dir
+root@ip-172-31-3-29:~# ls
+diskfree.txt  first_shellscript.sh  index.html  snap  sudoers  test_dir  test_dir.zip
+root@ip-172-31-3-29:~# mkdir unzipped_dir
+root@ip-172-31-3-29:~# ls
+diskfree.txt  first_shellscript.sh  index.html  snap  sudoers  test_dir  test_dir.zip  unzipped_dir
+root@ip-172-31-3-29:~# tar -xf test_dir.zip -C unzipped_dir
+root@ip-172-31-3-29:~# ls
+diskfree.txt  first_shellscript.sh  index.html  snap  sudoers  test_dir  test_dir.zip  unzipped_dir
+root@ip-172-31-3-29:~# ls -ld unzipped_dir/
+drwxr-xr-x 3 root root 4096 Sep 29 12:01 unzipped_dir/
+root@ip-172-31-3-29:~# cd unzipped_dir/
+root@ip-172-31-3-29:~/unzipped_dir# ls
+test_dir
+root@ip-172-31-3-29:~/unzipped_dir# cd test_dir/
+root@ip-172-31-3-29:~/unzipped_dir/test_dir# ls
+renamed_example.txt
+root@ip-172-31-3-29:~/unzipped_dir/test_dir#
+
+5. Downloading Files
+root@ip-172-31-3-29:~# wget https://example.com/
+--2026-09-29 12:03:15--  https://example.com/
+Resolving example.com (example.com)... 172.66.147.243, 104.20.23.154, 2606:4700:10::6814:179a, ...
+Connecting to example.com (example.com)|172.66.147.243|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘index.html.1’
+
+index.html.1                                      [ <=>                                                                                            ]     713  --.-KB/s    in 0s      
+
+2026-09-29 12:03:15 (13.8 MB/s) - ‘index.html.1’ saved [713]
+
+6. Changing Permissions
+root@ip-172-31-3-29:~# touch secure.txt
+root@ip-172-31-3-29:~# ls -ltr
+total 124
+drwx------ 3 root root  4096 Aug 20 14:46 snap
+-rw-r----- 1 root root     0 Aug 21 09:47 sudoers
+-rw-r--r-- 1 root root     0 Sep  3 11:28 first_shellscript.sh
+-rw-r--r-- 1 root root   713 Sep 28 16:19 index.html
+-rw-r--r-- 1 root root   713 Sep 28 16:19 index.html.1
+drwxr-xr-x 2 root root  4096 Sep 29 11:54 test_dir
+-rw-r--r-- 1 root root 10240 Sep 29 11:59 test_dir.zip
+drwxr-xr-x 3 root root  4096 Sep 29 12:01 unzipped_dir
+-rw-r--r-- 1 root root 86498 Sep 29 12:04 diskfree.txt
+-rw-r--r-- 1 root root     0 Sep 29 12:04 secure.txt
+root@ip-172-31-3-29:~# chmod 444 secure.txt
+root@ip-172-31-3-29:~# ls -ltr
+total 124
+drwx------ 3 root root  4096 Aug 20 14:46 snap
+-rw-r----- 1 root root     0 Aug 21 09:47 sudoers
+-rw-r--r-- 1 root root     0 Sep  3 11:28 first_shellscript.sh
+-rw-r--r-- 1 root root   713 Sep 28 16:19 index.html
+-rw-r--r-- 1 root root   713 Sep 28 16:19 index.html.1
+drwxr-xr-x 2 root root  4096 Sep 29 11:54 test_dir
+-rw-r--r-- 1 root root 10240 Sep 29 11:59 test_dir.zip
+drwxr-xr-x 3 root root  4096 Sep 29 12:01 unzipped_dir
+-rw-r--r-- 1 root root 86498 Sep 29 12:04 diskfree.txt
+-r--r--r-- 1 root root     0 Sep 29 12:04 secure.txt
+
+7. Working with Environment Variables
+root@ip-172-31-3-29:~# export MY_VAR="Hello,Linux!"
+root@ip-172-31-3-29:~# echo $MY_VAR
+Hello,Linux!
+root@ip-172-31-3-29:~#
